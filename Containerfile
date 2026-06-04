@@ -1,9 +1,12 @@
+ARG BASE_IMAGE=ghcr.io/ublue-os/bazzite:stable
+ARG IMAGE_VARIANT=main
+
 # Allow build scripts to be referenced without being copied into the final image
 FROM scratch AS ctx
 COPY build_files /
 
 # Base Image
-FROM ghcr.io/ublue-os/bazzite:stable
+FROM ${BASE_IMAGE}
 
 ## Other possible base images include:
 # FROM ghcr.io/ublue-os/bazzite:latest
@@ -33,6 +36,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
+    IMAGE_VARIANT=${IMAGE_VARIANT} \
     /ctx/build.sh
     
 ### LINTING

@@ -10,15 +10,58 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf5 install -y tmux 
+PACKAGES=(
+    screen
+    gvfs
+    gvfs-fuse
+    zsh
+    autofs
+    git-credential-libsecret
+    gvfs
+    gvfs-fuse
+    igt-gpu-tools
+    krb5-workstation
+    ksystemlog
+    rclone
+    qemu
+    qemu-kvm
+    qemu-img
+    qemu-char-spice
+    qemu-device-display-virtio-gpu
+    qemu-device-display-virtio-vga
+    qemu-device-usb-redirect
+    qemu-system-x86-core
+    qemu-user-binfmt
+    qemu-user-static
+    p7zip
+    p7zip-plugins
+    virt-viewer
+    podman-compose
+    podman-machine
+    podman-tui
+    libvirt
+    libvirt-nss
+)
 
-# Use a COPR Example:
-#
-# dnf5 -y copr enable ublue-os/staging
-# dnf5 -y install package
-# Disable COPRs so they don't end up enabled on the final image:
-# dnf5 -y copr disable ublue-os/staging
+dnf5 install -y "${PACKAGES[@]}"
+
+: "${IMAGE_VARIANT:=main}"
 
 #### Example for enabling a System Unit File
+case "${IMAGE_VARIANT}" in
+    main)
+        echo "Building main variant"
+        # for now we don't need something special for the main variant
+        ;;
+    nvidia)
+        echo "Building NVIDIA variant"
+        # for now we don't need something special for the nvidia variant
+        ;;
+    surface)
+        echo "Building Surface variant"
+        /ctx/surface-kernel.sh
+        /ctx/finalize-surface.sh
+        ;;
+esac
 
-systemctl enable podman.socket
+systemctl enable podman.socket || true
