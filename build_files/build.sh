@@ -11,6 +11,7 @@ set -ouex pipefail
 
 # this installs a package from fedora repos
 PACKAGES=(
+    htop
     screen
     gvfs
     gvfs-fuse

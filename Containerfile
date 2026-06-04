@@ -32,11 +32,14 @@ FROM ${BASE_IMAGE}
 ## make modifications desired in your image and install packages by modifying the build.sh script
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
 
+ARG IMAGE_VARIANT
+
+ENV IMAGE_VARIANT=${IMAGE_VARIANT}
+
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
-    IMAGE_VARIANT=${IMAGE_VARIANT} \
     /ctx/build.sh
     
 ### LINTING
