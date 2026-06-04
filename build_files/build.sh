@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -ouex pipefail
+: "${IMAGE_VARIANT:?IMAGE_VARIANT is not set}"
 
 ### Install packages
 
@@ -45,8 +46,6 @@ PACKAGES=(
 )
 
 dnf5 install -y "${PACKAGES[@]}"
-
-: "${IMAGE_VARIANT:=main}"
 
 #### Example for enabling a System Unit File
 case "${IMAGE_VARIANT}" in
