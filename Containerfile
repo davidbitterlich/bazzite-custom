@@ -5,8 +5,11 @@ ARG IMAGE_VARIANT=main
 FROM scratch AS ctx
 COPY build_files /
 
+FROM ghcr.io/davidbitterlich/linux-surface-fedora:latest-fc44 AS kernel
+
 # Base Image
 FROM ${BASE_IMAGE}
+COPY --from=kernel /packages /tmp/packages
 
 ## Other possible base images include:
 # FROM ghcr.io/ublue-os/bazzite:latest
