@@ -33,15 +33,15 @@ jobs:
       matrix:
         include:
           - variant: main
-            image_name: my-bazzite
+            image_name: bazzite-custom
             base_image: ghcr.io/ublue-os/bazzite:stable
 
           - variant: nvidia
-            image_name: my-bazzite-nvidia
+            image_name: bazzite-custom-nvidia
             base_image: ghcr.io/ublue-os/bazzite-nvidia:stable
 
           - variant: surface
-            image_name: my-bazzite-surface
+            image_name: bazzite-custom-surface
             base_image: ghcr.io/ublue-os/bazzite:stable
 
     permissions:
