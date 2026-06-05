@@ -9,6 +9,7 @@ export DRACUT_NO_XATTR=1
 mkdir -p /var/tmp
 chmod 1777 /var/tmp
 
+echo 'add_dracutmodules+=" surface_aggregator surface_aggregator_registry surface_aggregator_hub surface_hid_core pinctrl_tigerlake"' > /etc/dracut.conf.d/99-surface-module.conf
 sed -i '/\/root/d' /etc/dracut.conf.d/*.conf || true
 dracut \
   --no-hostonly \
