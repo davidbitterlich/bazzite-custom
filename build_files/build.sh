@@ -43,6 +43,12 @@ PACKAGES=(
     podman-tui
     libvirt
     libvirt-nss
+    libcamera
+    libcamera-tools
+    libcamera-qcam
+    libcamera-gstreamer
+    libcamera-ipa
+    pipewire-plugin-libcamera
 )
 
 dnf5 install -y "${PACKAGES[@]}"
