@@ -51,6 +51,9 @@ PACKAGES=(
     libcamera-ipa
     pipewire-plugin-libcamera
     virt-manager
+    ocygen-icon-theme
+    plasma-oxygen
+    oxgen-gtk2
 )
 
 dnf5 install -y "${PACKAGES[@]}"
