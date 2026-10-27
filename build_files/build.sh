@@ -54,6 +54,7 @@ PACKAGES=(
     oxygen-icon-theme
     plasma-oxygen
     oxygen-gtk2
+    kvantum
 )
 
 dnf5 install -y "${PACKAGES[@]}"
